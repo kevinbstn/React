@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Hello React JSX</title>
+    <!-- React la librairie  attention libraire utiliser en développement prendre d'autre cdn si production voir le site react-->
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+
+    <!-- React DOM pour monter l'arbre React dans le DOM -->
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+
+    <!-- Il faut le compilateur du JSX pour transformer le JSX en JS que le navigateur comprend -->
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+</head>
+
+<body>
+    <!-- Point d'entrée du montage de l'arbre -->
+    <div id="root"></div>
+
+    <!-- cible ce qu'il faut compiler pour babel  -->
+    <script type="text/babel">
+
+
+        class App extends React.Component {
+            constructor(props){
+                super(props);
+                this.state = {
+                    count : 0
+                }
+            }
+
+            componentDidMount(){
+
+                // React met à jour son state de manière asynchrone
+                // Il le fait de manière à optimiser le rendu
+                // On n'aura pas ce qui est attendu
+                this.setState({
+                    count: this.state.count + this.props.step
+                });
+                this.setState({
+                    count: this.state.count + this.props.step * 2
+                });
+                this.setState({
+                    count: this.state.count + this.props.step * 3
+                });
+                this.setState({
+                    count: this.state.count + this.props.step
+                });
+                this.setState({
+                    count: this.state.count + this.props.step
+                });
+
+                // Lorsqu'on passe une fonction fléchée (lambda) on force
+                // React à mettre jour le state en fonction de sa valeur précédente
+
+                this.setState((prevState, prevProps) =>({
+                    count: prevState.count + prevProps.step
+                }));
+
+                this.setState((prevState, prevProps) =>({
+                    count: prevState.count + prevProps.step
+                }));
+
+                this.setState((prevState, prevProps) =>({
+                    count: prevState.count + prevProps.step
+                }));
+
+                this.setState((prevState, prevProps) =>({
+                    count: prevState.count + prevProps.step
+                }));
+                
+            }
+
+            render(){
+
+                return (
+                    <div>
+                        <p>Count : {this.state.count} </p>
+                    </div>
+                );
+            }
+
+        }
+        ReactDOM.render(
+            <App step={1}/>,
+            document.getElementById('root')
+            
+        );
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Hello React JSX</title>
+    <!-- React la librairie  attention libraire utiliser en développement prendre d'autre cdn si production voir le site react-->
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+
+    <!-- React DOM pour monter l'arbre React dans le DOM -->
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+
+    <!-- Il faut le compilateur du JSX pour transformer le JSX en JS que le navigateur comprend -->
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+</head>
+
+<body>
+    <!-- Point d'entrée du montage de l'arbre -->
+    <div id="root"></div>
+
+    <!-- cible ce qu'il faut compiler pour babel  -->
+    <script type="text/babel">
+
+       class App extends React.Component{
+
+            constructor(props){
+                super(props);
+
+               // on lie le this de la classe à la fonction handleClick
+               // si on ne le fait pas alors le this sera le this du Window
+               //this.handleClick = this.handleClick.bind(this);
+            }
+
+            // handleClick(){
+
+            //     console.log('click me');
+            //     //console.log(this.props.title)
+
+            //     //console.log(this.props)
+
+            //     console.log(this)
+            // }
+
+
+            // la fonction flèchée n'a pas de this si on accède à un this à l'intérieur de celle-ci
+            // le this sera le this du context de la définition de la fonction fléchée
+            handleClick = () =>{
+                console.log(this.props);
+            }
+
+
+            render() {
+                
+                //console.log(this.props.title)
+
+                return(
+                    <button onClick={this.handleClick} >Click me </button>
+                )
+            }
+
+       }
+
+        // Rendu dans le DOM de deux components hiérarchiques
+        ReactDOM.render(
+            <App title="Button Click me !" />,
+            document.getElementById('root')
+        );
+    </script>
+</body>
+
+</html>

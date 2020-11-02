@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Hello React</title>
+    <!-- React la librairie -->
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+
+    <!-- React DOM pour monter l'arbre React dans le DOM -->
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+</head>
+
+<body>
+    <!-- Point d'entrée du montage de l'arbre -->
+    <div id="root"></div>
+
+    <script type="text/javascript">
+        // Rendu dans le DOM de deux components hiérarchiques
+        ReactDOM.render(
+
+            // Librairie React crée un composant
+            React.createElement('div', { 'style': { 'color': 'red' } },
+                // Crée un autre composant dans le premier
+                React.createElement('h1', null, "Oh Hello React !")
+            ),
+            // Node root permettant de placer le Component dans le DOM
+            // Monter l'arbre React dans le DOM
+            document.getElementById('root')
+            
+        );
+    </script>
+</body>
+
+</html>
